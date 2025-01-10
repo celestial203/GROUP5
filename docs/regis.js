@@ -1,28 +1,25 @@
+// Import Firebase SDK
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAcTK-Zjn6dkD-qXgRdN9PjlEXOJWR8h3M",
+  authDomain: "group5-9c8e7.firebaseapp.com",
+  projectId: "group5-9c8e7",
+  storageBucket: "group5-9c8e7.appspot.com", 
+  messagingSenderId: "690914147957",
+  appId: "1:690914147957:web:a68cf85774cffcd49f423c",
+  measurementId: "G-GNW9188WYY"
+};
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAcTK-Zjn6dkD-qXgRdN9PjlEXOJWR8h3M",
-    authDomain: "group5-9c8e7.firebaseapp.com",
-    projectId: "group5-9c8e7",
-    storageBucket: "group5-9c8e7.firebasestorage.app",
-    messagingSenderId: "690914147957",
-    appId: "1:690914147957:web:0ece9195d4ced1659f423c",
-    measurementId: "G-LYNQBL2BNN"
-  };
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);  // Initialize Firestore
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-
-
-console.log("Firebase initialized successfully"); // Debug log
+console.log("Firebase initialized successfully");
 
 // Form submission handler
 const form = document.querySelector("#register-form");
@@ -47,16 +44,24 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  // Register user in Firebase
+  // Register user in Firebase Authentication
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
+    // Add the user to Firestore
+    await setDoc(doc(db, "users", user.uid), {
+      email: user.email,
+      uid: user.uid,
+      createdAt: new Date().toISOString()
+    });
+
     alert(`Registration successful! Welcome, ${user.email}`);
-    console.log("User registered:", user);
+    console.log("User registered and added to Firestore:", user);
 
     // Redirect to login page
     window.location.href = "index.html";
+
   } catch (error) {
     console.error("Error during registration:", error);
 
