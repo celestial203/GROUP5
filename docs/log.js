@@ -4,14 +4,14 @@ import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/fir
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAcTK-Zjn6dkD-qXgRdN9PjlEXOJWR8h3M",
-  authDomain: "group5-9c8e7.firebaseapp.com",
-  projectId: "group5-9c8e7",
-  storageBucket: "group5-9c8e7.appspot.com",
-  messagingSenderId: "690914147957",
-  appId: "1:690914147957:web:a68cf85774cffcd49f423c",
-  measurementId: "G-GNW9188WYY"
-};
+    apiKey: "AIzaSyAcTK-Zjn6dkD-qXgRdN9PjlEXOJWR8h3M",
+    authDomain: "group5-9c8e7.firebaseapp.com",
+    projectId: "group5-9c8e7",
+    storageBucket: "group5-9c8e7.firebasestorage.app",
+    messagingSenderId: "690914147957",
+    appId: "1:690914147957:web:a68cf85774cffcd49f423c",
+    measurementId: "G-GNW9188WYY"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
