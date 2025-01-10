@@ -32,7 +32,7 @@ form.addEventListener("submit", async (e) => {
     const user = userCredential.user;
     alert("Registration successful! Welcome, " + user.email);
     // Redirect to login page or another page
-    window.location.href = "login.html";
+    window.location.href = "index.html";
   } catch (error) {
     alert("Error: " + error.message);
   }

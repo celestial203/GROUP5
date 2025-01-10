@@ -38,7 +38,7 @@ form.addEventListener('submit', async (event) => {
     console.log("Logged in user:", userCredential.user);
 
     // Redirect or take additional actions
-    window.location.href = "dashboard.html"; // Replace with your desired redirect page
+    window.location.href = "home.html"; // Replace with your desired redirect page
   } catch (error) {
     // Handle errors
     console.error("Error during login:", error);
