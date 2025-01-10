@@ -4,13 +4,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebas
 
 // Your Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCwZaQOLvxAtM_aoO1AqsEOlbRGMBh1JNY",
-  authDomain: "sia2pipelineactivity.firebaseapp.com",
-  projectId: "sia2pipelineactivity",
-  storageBucket: "sia2pipelineactivity.firebasestorage.app",
-  messagingSenderId: "732439095208",
-  appId: "1:732439095208:web:0d3062c7311471ccba9f9d",
-  measurementId: "G-85VMJFVQJQ"
+  apiKey: "AIzaSyAcTK-Zjn6dkD-qXgRdN9PjlEXOJWR8h3M",
+  authDomain: "group5-9c8e7.firebaseapp.com",
+  projectId: "group5-9c8e7",
+  storageBucket: "group5-9c8e7.firebasestorage.app",
+  messagingSenderId: "690914147957",
+  appId: "1:690914147957:web:0ece9195d4ced1659f423c",
+  measurementId: "G-LYNQBL2BNN"
 };
 
 // Initialize Firebase
