@@ -17,15 +17,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+console.log("Firebase initialized successfully"); // Debugging log
+
 // Form submission handler
 const form = document.querySelector("#register-form");
 form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  e.preventDefault(); // Prevent form submission and page reload
 
   // Get user input
-  const email = document.querySelector("#email").value;
+  const email = document.querySelector("#email").value.trim();
   const password = document.querySelector("#password").value;
   const confirmPassword = document.querySelector("#confirm-password").value;
+
+  // Validate email and password fields
+  if (!email || !password || !confirmPassword) {
+    alert("Please fill in all fields.");
+    return;
+  }
 
   // Validate password confirmation
   if (password !== confirmPassword) {
@@ -39,9 +47,21 @@ form.addEventListener("submit", async (e) => {
     const user = userCredential.user;
 
     alert(`Registration successful! Welcome, ${user.email}`);
+    console.log("User registered:", user); // Debugging log
+
     // Redirect to login page
     window.location.href = "index.html";
   } catch (error) {
-    alert(`Error: ${error.message}`);
+    // Display appropriate error messages
+    console.error("Error during registration:", error); // Debugging log
+    if (error.code === "auth/email-already-in-use") {
+      alert("This email is already registered. Please log in instead.");
+    } else if (error.code === "auth/weak-password") {
+      alert("Password should be at least 6 characters long.");
+    } else if (error.code === "auth/invalid-email") {
+      alert("Please enter a valid email address.");
+    } else {
+      alert(`Error: ${error.message}`);
+    }
   }
 });
